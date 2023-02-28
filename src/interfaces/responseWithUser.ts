@@ -1,8 +1,8 @@
 import { Response } from "express";
-import User from "../entity/user";
+import UserOnline from "../entity/userOnline";
 
 interface ResponseWithUser extends Response {
-  user: User | any,
+  user: UserOnline | any,
 }
 
 export default ResponseWithUser;

@@ -1,6 +1,6 @@
 import HttpException from "../interfaces/httpException"
 
-class AuthWrongTokenException implements HttpException {
+class authTokenWrongException implements HttpException {
   status : number;
   message: string;
 
@@ -10,5 +10,5 @@ class AuthWrongTokenException implements HttpException {
   }
 }
 
-export default AuthWrongTokenException;
+export default authTokenWrongException;
 

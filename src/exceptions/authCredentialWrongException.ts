@@ -1,14 +1,14 @@
 import HttpException from "../interfaces/httpException"
 
-class AuthWrongCredentialException implements HttpException {
+class AuthCredentialWrongException implements HttpException {
   status : number;
   message: string;
 
   constructor() {
-    this.status  = 401;
-    this.message = 'Access denied, User not found';
+    this.status  = 400;
+    this.message = 'Wrong Email/Password';
   }
 }
 
-export default AuthWrongCredentialException;
+export default AuthCredentialWrongException;
 

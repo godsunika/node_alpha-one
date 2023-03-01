@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import { config as dotenv } from "dotenv";
 import { Request, Response, NextFunction } from "express";
-import AuthWrongTokenException from "../exceptions/authTokenWrongException";
-import ResponseWithUser from "../interfaces/responseWithUser";
-import AuthTokenInvalidException from "../exceptions/authTokenInvalidException";
+import AuthWrongTokenException from "../exceptions/authTokenWrong.exception";
+import ResponseWithUser from "../interfaces/responseWithUser.interface";
+import AuthTokenInvalidException from "../exceptions/authTokenInvalid.exception";
 
 dotenv();
 

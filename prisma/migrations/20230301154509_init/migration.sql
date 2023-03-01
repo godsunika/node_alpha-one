@@ -30,7 +30,7 @@ CREATE TABLE "role_user" (
 -- CreateTable
 CREATE TABLE "permissions" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" VARCHAR(191) NOT NULL,
     "display_name" VARCHAR(191),
     "description" VARCHAR(191),
@@ -43,7 +43,7 @@ CREATE TABLE "permissions" (
 -- CreateTable
 CREATE TABLE "roles" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" VARCHAR(191) NOT NULL,
     "display_name" VARCHAR(191),
     "description" VARCHAR(191),
@@ -56,7 +56,7 @@ CREATE TABLE "roles" (
 -- CreateTable
 CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "username" VARCHAR(191) NOT NULL,
     "name" VARCHAR(191) NOT NULL,
     "sex" VARCHAR(191) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "shapes" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" VARCHAR(200) NOT NULL,
     "created_at" TIMESTAMP(0) NOT NULL,
     "updated_at" TIMESTAMP(0) NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE "shapes" (
 -- CreateTable
 CREATE TABLE "types" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" VARCHAR(200) NOT NULL,
     "created_at" TIMESTAMP(0) NOT NULL,
     "updated_at" TIMESTAMP(0) NOT NULL,
@@ -106,7 +106,7 @@ CREATE TABLE "types" (
 -- CreateTable
 CREATE TABLE "categories" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" VARCHAR(200) NOT NULL,
     "created_at" TIMESTAMP(0) NOT NULL,
     "updated_at" TIMESTAMP(0) NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE "categories" (
 -- CreateTable
 CREATE TABLE "drugs" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" VARCHAR(200) NOT NULL,
     "shape_id" INTEGER NOT NULL,
     "type_id" INTEGER NOT NULL,
@@ -140,7 +140,7 @@ CREATE TABLE "drugs" (
 -- CreateTable
 CREATE TABLE "formulas" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" VARCHAR(200) NOT NULL,
     "no_formula" INTEGER NOT NULL,
     "price" INTEGER NOT NULL,
@@ -158,7 +158,7 @@ CREATE TABLE "formulas" (
 -- CreateTable
 CREATE TABLE "detail_formulas" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "formula_id" INTEGER NOT NULL,
     "drug_id" INTEGER NOT NULL,
     "qty_pcs" INTEGER NOT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE "detail_formulas" (
 -- CreateTable
 CREATE TABLE "distributors" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "name" VARCHAR(200) NOT NULL,
     "address" VARCHAR(100) NOT NULL,
     "phone" VARCHAR(50) NOT NULL,
@@ -194,7 +194,7 @@ CREATE TABLE "distributors" (
 -- CreateTable
 CREATE TABLE "invoices" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "distributor_id" INTEGER NOT NULL,
     "no_invoice" VARCHAR(191) NOT NULL,
     "invoice_date" DATE NOT NULL,
@@ -217,7 +217,7 @@ CREATE TABLE "invoices" (
 -- CreateTable
 CREATE TABLE "detail_invoices" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "invoice_id" INTEGER NOT NULL,
     "drug_id" INTEGER NOT NULL,
     "no_batch" VARCHAR(191) NOT NULL,
@@ -243,7 +243,7 @@ CREATE TABLE "detail_invoices" (
 -- CreateTable
 CREATE TABLE "transaction_invoices" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "invoice_id" INTEGER NOT NULL,
     "pay_date" DATE NOT NULL,
     "total_pay" INTEGER NOT NULL,
@@ -260,7 +260,7 @@ CREATE TABLE "transaction_invoices" (
 -- CreateTable
 CREATE TABLE "return_invoices" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "distributor_id" INTEGER NOT NULL,
     "invoice_id" INTEGER NOT NULL,
     "detail_invoice_id" INTEGER NOT NULL,
@@ -282,7 +282,7 @@ CREATE TABLE "return_invoices" (
 -- CreateTable
 CREATE TABLE "order_invoices" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "distributor_id" INTEGER NOT NULL,
     "no_order" VARCHAR(191) NOT NULL,
     "order_date" DATE NOT NULL,
@@ -300,7 +300,7 @@ CREATE TABLE "order_invoices" (
 -- CreateTable
 CREATE TABLE "detail_order_invoices" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "order_invoice_id" INTEGER NOT NULL,
     "drug_id" INTEGER NOT NULL,
     "qty" INTEGER NOT NULL,
@@ -319,7 +319,7 @@ CREATE TABLE "detail_order_invoices" (
 -- CreateTable
 CREATE TABLE "stocks" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "drug_id" INTEGER NOT NULL,
     "total_qty" INTEGER NOT NULL,
     "price" INTEGER NOT NULL,
@@ -338,7 +338,7 @@ CREATE TABLE "stocks" (
 -- CreateTable
 CREATE TABLE "detail_stocks" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "stock_id" INTEGER NOT NULL,
     "detail_invoice_id" INTEGER,
     "qty_pcs" INTEGER NOT NULL,
@@ -361,7 +361,7 @@ CREATE TABLE "detail_stocks" (
 -- CreateTable
 CREATE TABLE "history_stocks" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "stock_id" INTEGER NOT NULL,
     "status" VARCHAR(191),
     "qty_pcs" INTEGER NOT NULL,
@@ -383,7 +383,7 @@ CREATE TABLE "history_stocks" (
 -- CreateTable
 CREATE TABLE "sales" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "sale_date" DATE NOT NULL,
     "count_item" INTEGER NOT NULL,
     "total_sale" INTEGER NOT NULL,
@@ -406,7 +406,7 @@ CREATE TABLE "sales" (
 -- CreateTable
 CREATE TABLE "detail_sales" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "sale_id" INTEGER NOT NULL,
     "detail_stock_id" INTEGER,
     "qty_pcs" INTEGER NOT NULL,
@@ -428,7 +428,7 @@ CREATE TABLE "detail_sales" (
 -- CreateTable
 CREATE TABLE "transaction_sales" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "sale_id" INTEGER NOT NULL,
     "pay_date" DATE NOT NULL,
     "total_pay" INTEGER NOT NULL,
@@ -445,7 +445,7 @@ CREATE TABLE "transaction_sales" (
 -- CreateTable
 CREATE TABLE "summary_transactions" (
     "id" SERIAL NOT NULL,
-    "uid" UUID NOT NULL,
+    "uid" TEXT NOT NULL,
     "transaction_date" DATE NOT NULL,
     "revenue" INTEGER NOT NULL,
     "expense" INTEGER NOT NULL,

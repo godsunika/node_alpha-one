@@ -40,7 +40,7 @@ model role_user {
 
 model permissions {
   id              Int               @id @default(autoincrement())
-  uid             String            @db.Uuid
+  uid             String            @unique @db.Uuid
   name            String            @unique @db.VarChar(191)
   display_name    String?           @db.VarChar(191)
   description     String?           @db.VarChar(191)
@@ -51,7 +51,7 @@ model permissions {
 
 model roles {
   id              Int               @id @default(autoincrement())
-  uid             String            @db.Uuid
+  uid             String            @unique @db.Uuid
   name            String            @unique @db.VarChar(191)
   display_name    String?           @db.VarChar(191)
   description     String?           @db.VarChar(191)
@@ -63,7 +63,7 @@ model roles {
 
 model users {
   id                     Int                     @id @default(autoincrement())
-  uid                    String                  @db.Uuid
+  uid                    String                  @unique @db.Uuid
   username               String                  @unique @db.VarChar(191)
   name                   String                  @db.VarChar(191)
   sex                    String                  @db.VarChar(191)
@@ -144,7 +144,7 @@ model users {
 
 model shapes {
   id         Int       @id @default(autoincrement())
-  uid        String    @db.Uuid
+  uid        String    @unique @db.Uuid
   name       String    @db.VarChar(200)
   created_at DateTime  @db.Timestamp(0)
   updated_at DateTime  @db.Timestamp(0)
@@ -160,7 +160,7 @@ model shapes {
 
 model types {
   id         Int       @id @default(autoincrement())
-  uid        String    @db.Uuid
+  uid        String    @unique @db.Uuid
   name       String    @db.VarChar(200)
   created_at DateTime  @db.Timestamp(0)
   updated_at DateTime  @db.Timestamp(0)
@@ -176,7 +176,7 @@ model types {
 
 model categories {
   id         Int       @id @default(autoincrement())
-  uid        String    @db.Uuid
+  uid        String    @unique @db.Uuid
   name       String    @db.VarChar(200)
   created_at DateTime  @db.Timestamp(0)
   updated_at DateTime  @db.Timestamp(0)
@@ -192,7 +192,7 @@ model categories {
 
 model drugs {
   id                    Int                     @id @default(autoincrement())
-  uid                   String                  @db.Uuid
+  uid                   String                  @unique @db.Uuid
   name                  String                  @db.VarChar(200)
   shape_id              Int
   type_id               Int
@@ -218,7 +218,7 @@ model drugs {
 
 model formulas {
   id              Int               @id @default(autoincrement())
-  uid             String            @db.Uuid
+  uid             String            @unique @db.Uuid
   name            String            @db.VarChar(200)
   no_formula      Int
   price           Int
@@ -239,7 +239,7 @@ model formulas {
 
 model detail_formulas {
   id         Int       @id @default(autoincrement())
-  uid        String    @db.Uuid
+  uid        String    @unique @db.Uuid
   formula_id Int
   drug_id    Int
   qty_pcs    Int
@@ -258,7 +258,7 @@ model detail_formulas {
 
 model distributors {
   id              Int               @id @default(autoincrement())
-  uid             String            @db.Uuid
+  uid             String            @unique @db.Uuid
   name            String            @db.VarChar(200)
   address         String            @db.VarChar(100)
   phone           String            @db.VarChar(50)
@@ -279,7 +279,7 @@ model distributors {
 
 model invoices {
   id                   Int                    @id @default(autoincrement())
-  uid                  String                 @db.Uuid
+  uid                  String                 @unique @db.Uuid
   distributor_id       Int
   no_invoice           String                 @db.VarChar(191)
   invoice_date         DateTime              @db.Date
@@ -306,7 +306,7 @@ model invoices {
 
 model detail_invoices {
   id               Int               @id @default(autoincrement())
-  uid              String            @db.Uuid
+  uid              String            @unique @db.Uuid
   invoice_id       Int
   drug_id          Int
   no_batch         String           @db.VarChar(191)
@@ -337,7 +337,7 @@ model detail_invoices {
 
 model transaction_invoices {
   id         Int       @id @default(autoincrement())
-  uid        String    @db.Uuid
+  uid        String    @unique @db.Uuid
   invoice_id Int
   pay_date   DateTime  @db.Date
   total_pay  Int
@@ -355,7 +355,7 @@ model transaction_invoices {
 
 model return_invoices {
   id                Int              @id @default(autoincrement())
-  uid               String           @db.Uuid
+  uid               String           @unique @db.Uuid
   distributor_id    Int
   invoice_id        Int
   detail_invoice_id Int
@@ -381,7 +381,7 @@ model return_invoices {
 
 model order_invoices {
   id                    Int                     @id @default(autoincrement())
-  uid                   String                  @db.Uuid
+  uid                   String                  @unique @db.Uuid
   distributor_id        Int
   no_order              String                  @db.VarChar(191)
   order_date            DateTime                @db.Date
@@ -400,7 +400,7 @@ model order_invoices {
 
 model detail_order_invoices {
   id               Int            @id @default(autoincrement())
-  uid              String         @db.Uuid
+  uid              String         @unique @db.Uuid
   order_invoice_id Int
   drug_id          Int
   qty              Int
@@ -421,7 +421,7 @@ model detail_order_invoices {
 
 model stocks {
   id            Int             @id @default(autoincrement())
-  uid           String          @db.Uuid
+  uid           String          @unique @db.Uuid
   drug_id       Int
   total_qty     Int
   price         Int
@@ -442,7 +442,7 @@ model stocks {
 
 model detail_stocks {
   id                Int              @id @default(autoincrement())
-  uid               String           @db.Uuid
+  uid               String           @unique @db.Uuid
   stock_id          Int
   detail_invoice_id Int?
   qty_pcs           Int
@@ -470,7 +470,7 @@ model detail_stocks {
 
 model history_stocks {
   id                Int              @id @default(autoincrement())
-  uid               String           @db.Uuid
+  uid               String           @unique @db.Uuid
   stock_id          Int
   status            String?          @db.VarChar(191)
   qty_pcs           Int
@@ -496,7 +496,7 @@ model history_stocks {
 
 model sales {
   id                Int                 @id @default(autoincrement())
-  uid               String              @db.Uuid
+  uid               String              @unique @db.Uuid
   sale_date         DateTime            @db.Date
   count_item        Int
   total_sale        Int
@@ -521,7 +521,7 @@ model sales {
 
 model detail_sales {
   id              Int              @id @default(autoincrement())
-  uid             String           @db.Uuid
+  uid             String           @unique @db.Uuid
   sale_id         Int
   detail_stock_id Int?
   qty_pcs         Int
@@ -547,7 +547,7 @@ model detail_sales {
 
 model transaction_sales {
   id         Int       @id @default(autoincrement())
-  uid        String    @db.Uuid
+  uid        String    @unique @db.Uuid
   sale_id    Int
   pay_date   DateTime  @db.Date
   total_pay  Int
@@ -565,7 +565,7 @@ model transaction_sales {
 
 model summary_transactions {
   id               Int       @id @default(autoincrement())
-  uid              String    @db.Uuid
+  uid              String    @unique @db.Uuid
   transaction_date DateTime  @db.Date
   revenue          Int //pendapatan kotor
   expense          Int //pengeluaran

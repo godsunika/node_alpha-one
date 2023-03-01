@@ -4,7 +4,7 @@ import { signInHandler, signUpHandler } from '../controllers/auth.controller';
 const router = express.Router();
 
 // Register user route
-router.post('/register', signUpHandler);
+// router.post('/register', signUpHandler);
 
 // Login user route
 router.post('/login', signInHandler);

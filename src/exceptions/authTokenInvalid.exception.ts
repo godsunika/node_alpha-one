@@ -1,4 +1,4 @@
-import HttpException from "../interfaces/httpException"
+import HttpException from "../interfaces/httpException.interface"
 
 class AuthTokenInvalidException implements HttpException {
   status : number;

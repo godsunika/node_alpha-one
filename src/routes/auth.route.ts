@@ -1,18 +1,18 @@
 import express from 'express';
-import { signInHandler, signUpHandler } from '../controllers/auth.controller';
+import { refreshTokenHandler, signInHandler, signUpHandler } from '../controllers/auth.controller';
 
-const router = express.Router();
+const AuthRoutes = express.Router();
 
-// Register user route
-// router.post('/register', signUpHandler);
+// register users
+AuthRoutes.post('/register', signUpHandler);
 
-// Login user route
-router.post('/login', signInHandler);
+// login user
+AuthRoutes.post('/login', signInHandler);
 
-// // Refresh access toke route
-// router.get('/refresh', refreshAccessTokenHandler);
+// refresh access token
+AuthRoutes.get('/refresh', refreshTokenHandler);
 
-// // Logout User
-// router.get('/logout', deserializeUser, requireUser, logoutHandler);
+// logout User
+// AuthRoutes.get('/logout', deserializeUser, requireUser, logoutHandler);sssss
 
-export default router;
+export default AuthRoutes;

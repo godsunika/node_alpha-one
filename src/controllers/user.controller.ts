@@ -8,7 +8,7 @@ import AuthCredentialWrongException from '../exceptions/authCredentialWrong.exce
 import AuthCredentialInvalidException from '../exceptions/authCredentialInvalid.exception';
 import User from '../entity/user.entity';
 import BasicErrorException from '../exceptions/basicError.exception';
-import { getPagination } from '../utils/pagination.util';
+import { getPagination, getPagingData } from '../utils/pagination.util';
 
 
 const prisma = new PrismaClient();
@@ -103,20 +103,25 @@ export async function getUser(req: Request, res: Response) {
     const condition             = title ? title : null;
     const { limit, offset }     = getPagination(page, size);
 
-    const userList = await prisma.users.findMany({
-      skip: offset,
-      take: limit,
-      // where: {
-      //   email: {
-      //     contains: 'Prisma',
-      //   },
-      // },
-      orderBy: {
-        username: 'desc',
-      },
-    });
+    const userList = await prisma.$transaction([
+      prisma.users.count(),
+      prisma.users.findMany({
+        skip: offset,
+        take: limit,
+        // where: {
+        //   email: {
+        //     contains: 'Prisma',
+        //   },
+        // },
+        orderBy: {
+          username: 'desc',
+        },
+      })
+    ]);
 
-    res.json(userList);
+    const data = getPagingData(userList, page, limit);
+    
+    res.json(data);
 
   } catch (error) {
     let { status, message } = new BasicErrorException();
